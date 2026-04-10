@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 6 — Resenha Crítica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --azul-uft: #003366;
+      --azul-medio: #1a4d8f;
+      --azul-claro: #d6e4f7;
+      --dourado: #c8952a;
+      --dourado-claro: #f5e6c8;
+      --cinza-quente: #f7f4f0;
+      --texto: #1c1c1c;
+      --texto-suave: #4a4a4a;
+      --branco: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cinza-quente);
+      color: var(--texto);
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--azul-uft);
+      color: var(--branco);
+      padding: 52px 40px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(200,149,42,0.12);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--dourado);
+      color: var(--branco);
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 14px;
+      max-width: 680px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #f0c96a;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      opacity: 0.88;
+      max-width: 600px;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* AVISO IMPORTANTE */
+    .aviso {
+      background: #fff8e8;
+      border-left: 5px solid var(--dourado);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 26px;
+      margin: 36px 0 10px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .aviso-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+    .aviso-texto strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--dourado);
+      margin-bottom: 4px;
+    }
+    .aviso-texto p { font-size: 0.96rem; color: var(--texto-suave); }
+
+    /* SECTION */
+    section {
+      background: var(--branco);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin: 24px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--azul-uft);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--azul-claro);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    section h2 span.num {
+      background: var(--azul-uft);
+      color: var(--branco);
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    section p { font-size: 0.97rem; color: var(--texto-suave); margin-bottom: 10px; }
+    section p:last-child { margin-bottom: 0; }
+
+    /* STEPS */
+    .steps { list-style: none; counter-reset: step; }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #eee;
+      align-items: flex-start;
+    }
+    .steps li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .steps li::before {
+      content: counter(step);
+      background: var(--azul-medio);
+      color: var(--branco);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      min-width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .steps li .step-body strong {
+      display: block;
+      font-size: 0.97rem;
+      color: var(--texto);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .steps li .step-body p {
+      font-size: 0.91rem;
+      margin-bottom: 0;
+    }
+
+    /* VIDEO */
+    .video-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      padding-top: 56.25%;
+      margin: 18px 0 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-caption {
+      font-size: 0.82rem;
+      color: #888;
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* CRITERIOS */
+    .criterios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .criterio-card {
+      background: var(--azul-claro);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .criterio-card .crit-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--azul-uft);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .criterio-card p {
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+      margin-bottom: 0;
+    }
+
+    /* PONTUACAO */
+    .pont-box {
+      background: linear-gradient(135deg, var(--azul-uft) 0%, var(--azul-medio) 100%);
+      color: var(--branco);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin-top: 18px;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .pont-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #f0c96a;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .pont-desc { font-size: 0.92rem; opacity: 0.9; }
+    .pont-desc strong { display: block; font-size: 1rem; margin-bottom: 4px; }
+
+    /* REGRAS */
+    .regras { list-style: none; }
+    .regras li {
+      padding: 10px 0 10px 28px;
+      border-bottom: 1px solid #eee;
+      font-size: 0.94rem;
+      color: var(--texto-suave);
+      position: relative;
+    }
+    .regras li:last-child { border-bottom: none; }
+    .regras li::before {
+      content: attr(data-icon);
+      position: absolute;
+      left: 0;
+      font-size: 1rem;
+    }
+
+    /* CTA FORMULARIO */
+    .cta-form {
+      background: linear-gradient(135deg, #fff8e8 0%, #fef3d4 100%);
+      border: 2px solid var(--dourado);
+      border-radius: 12px;
+      padding: 30px 36px;
+      text-align: center;
+      margin: 28px 0;
+    }
+    .cta-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--azul-uft);
+      margin-bottom: 10px;
+    }
+    .cta-form p {
+      font-size: 0.95rem;
+      color: var(--texto-suave);
+      margin-bottom: 20px;
+    }
+    .cta-form .prazo {
+      display: inline-block;
+      background: var(--azul-uft);
+      color: var(--branco);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .btn-formulario {
+      display: inline-block;
+      background: var(--dourado);
+      color: var(--branco);
+      text-decoration: none;
+      font-family: 'Source Serif 4', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(200,149,42,0.35);
+    }
+    .btn-formulario:hover {
+      background: #a87620;
+      transform: translateY(-2px);
+    }
+
+    /* PROXIMA AULA */
+    .proxima {
+      background: var(--azul-uft);
+      color: var(--branco);
+      border-radius: 12px;
+      padding: 28px 36px;
+      margin: 24px 0;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .proxima-data {
+      text-align: center;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .proxima-data .dia {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #f0c96a;
+      line-height: 1;
+    }
+    .proxima-data .mes {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+    .proxima-divider {
+      width: 2px;
+      height: 70px;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+    .proxima-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .proxima-info p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 20px 40px;
+      color: #999;
+      font-size: 0.82rem;
+    }
+    footer strong { color: var(--azul-uft); }
+
+    /* ANIMACOES */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero, .aviso, section, .cta-form, .proxima {
+      animation: fadeUp 0.5s ease both;
+    }
+    section:nth-child(2) { animation-delay: 0.05s; }
+    section:nth-child(3) { animation-delay: 0.10s; }
+    section:nth-child(4) { animation-delay: 0.15s; }
+    section:nth-child(5) { animation-delay: 0.20s; }
+
+    /* MATERIAIS COMPLEMENTARES */
+    .materiais-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .material-card {
+      display: flex;
+      gap: 14px;
+      background: var(--cinza-quente);
+      border: 1px solid #e0dbd3;
+      border-radius: 10px;
+      padding: 18px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+      align-items: flex-start;
+    }
+    .material-card:hover {
+      box-shadow: 0 4px 18px rgba(0,51,102,0.12);
+      transform: translateY(-2px);
+      border-color: var(--azul-claro);
+    }
+    .material-dica {
+      background: var(--dourado-claro);
+      border-color: var(--dourado);
+      cursor: default;
+    }
+    .material-dica:hover { transform: none; box-shadow: none; border-color: var(--dourado); }
+    .mat-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+    .mat-tipo {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--dourado);
+      margin-bottom: 4px;
+    }
+    .mat-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.93rem;
+      color: var(--azul-uft);
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .mat-desc {
+      font-size: 0.83rem;
+      color: var(--texto-suave);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .mat-link {
+      font-size: 0.79rem;
+      color: var(--azul-medio);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 36px 22px 32px; }
+      section { padding: 24px 20px; }
+      .cta-form { padding: 24px 20px; }
+      .proxima { padding: 22px 20px; }
+      .pont-box { flex-direction: column; gap: 10px; }
+      .proxima-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <span class="hero-badge">Aula 6 — Direito Empresarial e Societário</span>
+    <h1>Como elaborar uma <em>resenha crítica</em></h1>
+    <p>Esta semana a aula é assíncrona. Siga o roteiro abaixo, escolha seu texto e registre sua dupla antes de 18 de abril.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AVISO -->
+  <div class="aviso">
+    <div class="aviso-icon">📌</div>
+    <div class="aviso-texto">
+      <strong>Atenção: aula presencial cancelada esta semana</strong>
+      <p>A aula presencial do dia 11/04 não ocorrerá. Em substituição, você deve cumprir este roteiro de forma autônoma. Na aula do dia 18/04, também presencialmente, faremos uma orientação coletiva para tirar dúvidas e ajudar cada dupla a iniciar a escrita da resenha.</p>
+    </div>
+  </div>
+
+  <!-- ROTEIRO -->
+  <section>
+    <h2><span class="num">1</span> O que você deve fazer esta semana</h2>
+    <p>Siga os passos abaixo na ordem indicada. O prazo para registrar sua dupla e seu texto no formulário é <strong>18 de abril de 2025</strong>.</p>
+
+    <ul class="steps">
+      <li>
+        <div class="step-body">
+          <strong>Assista ao vídeo introdutório</strong>
+          <p>Abaixo há um vídeo que apresenta os elementos fundamentais de uma resenha crítica acadêmica. Assista antes de ler qualquer artigo.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Leia o Livro Digital sobre resenha crítica</strong>
+          <p>O material "Como elaborar uma resenha crítica?" está disponível nesta mesma aula do Moodle. Ele orienta estrutura, linguagem e o que se espera do texto.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Acesse a Biblioteca de artigos</strong>
+          <p>Os textos estão disponíveis na pasta "Biblioteca de artigos para a resenha" aqui no Moodle. Leia ao menos os resumos de cada opção antes de decidir.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Forme sua dupla e escolha um único texto</strong>
+          <p>Cada dupla deve escolher apenas um artigo da lista. Não é permitido que duas duplas da mesma turma trabalhem com o mesmo texto, então registre logo a sua escolha.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Preencha o formulário de registro</strong>
+          <p>Registre o nome dos dois integrantes e o texto escolhido no formulário disponível abaixo. Prazo: até 18 de abril.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- VIDEO -->
+  <section>
+    <h2><span class="num">2</span> Video introdutório: o que é uma resenha crítica</h2>
+    <p>Este vídeo explica de forma clara e acessível a diferença entre resumo e resenha crítica, os elementos que não podem faltar e como estruturar seu texto. Reserve cerca de 10 minutos para assisti-lo antes de começar.</p>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/rDNfm3JesUw"
+        title="Como elaborar uma resenha crítica"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <p class="video-caption">Após assistir, leia o Livro Digital disponível no Moodle para aprofundar os conceitos.</p>
+  </section>
+
+  <!-- O QUE E UMA RESENHA -->
+  <section>
+    <h2><span class="num">3</span> O que se espera da sua resenha</h2>
+    <p>A resenha crítica não é um resumo do artigo. Ela exige que você compreenda o texto, sintetize seus argumentos principais e os avalie com base no que aprendeu na disciplina e em pesquisa própria.</p>
+    <p>O trabalho deve ter entre 3 e 5 páginas, ser escrito à mão e entregue presencialmente em dupla. Somente um trabalho por dupla deve ser entregue.</p>
+
+    <div class="criterios-grid">
+      <div class="criterio-card">
+        <div class="crit-titulo">Conhecimento do texto</div>
+        <p>Você compreendeu o que o autor argumenta? Os conceitos centrais estão identificados?</p>
+      </div>
+      <div class="criterio-card">
+        <div class="crit-titulo">Síntese e análise</div>
+        <p>Você foi capaz de condensar o essencial do artigo sem perder o fio argumentativo?</p>
+      </div>
+      <div class="criterio-card">
+        <div class="crit-titulo">Escrita e estilo</div>
+        <p>O texto é inteligível, respeitando as normas da língua portuguesa?</p>
+      </div>
+      <div class="criterio-card">
+        <div class="crit-titulo">Criatividade</div>
+        <p>Você relacionou o tema do artigo a outros conteúdos relevantes da disciplina ou do mundo real?</p>
+      </div>
+    </div>
+
+    <div class="pont-box">
+      <div class="pont-numero">10</div>
+      <div class="pont-desc">
+        <strong>Pontuação máxima</strong>
+        1 ponto pela simples entrega dentro do prazo. Até 9 pontos pelo conteúdo, avaliados pelos quatro critérios acima. Trabalhos entregues fora do prazo ou com número de páginas diferente do exigido não serão considerados.
+      </div>
+    </div>
+  </section>
+
+  <!-- REGRAS IMPORTANTES -->
+  <section>
+    <h2><span class="num">4</span> Regras que você precisa conhecer</h2>
+    <ul class="regras">
+      <li data-icon="✍️">A resenha deve ser escrita à mão e entregue presencialmente em sala de aula na data prevista.</li>
+      <li data-icon="👥">O trabalho é feito em dupla. Somente um exemplar por dupla deve ser entregue.</li>
+      <li data-icon="📄">A resenha deve ter entre 3 e 5 páginas. Trabalhos fora desse intervalo não serão avaliados.</li>
+      <li data-icon="📚">Cada dupla escolhe apenas um texto da lista disponível na Biblioteca de artigos do Moodle.</li>
+      <li data-icon="🚫">O uso de inteligência artificial, plágio ou falta de seriedade no cumprimento da tarefa acarreta nota zero.</li>
+      <li data-icon="📅">A escolha do texto e a formação da dupla devem ser registradas no formulário até 18 de abril.</li>
+    </ul>
+  </section>
+
+  <!-- FORMULARIO CTA -->
+  <div class="cta-form">
+    <span class="prazo">Prazo: até 18 de abril de 2025</span>
+    <h3>Registre sua dupla e seu texto agora</h3>
+    <p>Acesse o formulário abaixo, informe os nomes dos dois integrantes da dupla e o texto escolhido entre os disponíveis na Biblioteca de artigos. O registro é obrigatório e serve para organizar a turma antes da orientação presencial.</p>
+    <a class="btn-formulario" href="https://forms.gle/WkV451wmBLjgKmhp6" target="_blank" rel="noopener">
+      Preencher o formulário de escolha
+    </a>
+  </div>
+
+  <!-- PROXIMA AULA -->
+  <div class="proxima">
+    <div class="proxima-data">
+      <div class="dia">18</div>
+      <div class="mes">Abril</div>
+    </div>
+    <div class="proxima-divider"></div>
+    <div class="proxima-info">
+      <h3>Orientação presencial das duplas</h3>
+      <p>Na aula do dia 18 de abril, realizada presencialmente, faremos uma rodada de orientações com cada dupla. O objetivo é tirar dúvidas sobre o texto escolhido e ajudar no início da escrita da resenha. Venha com o artigo já lido e com as primeiras ideias organizadas.</p>
+    </div>
+  </div>
+
+  <!-- DICA FINAL -->
+  <section>
+    <h2><span class="num">5</span> Uma dica para escrever melhor</h2>
+    <p>Antes de começar a escrever, tente responder a estas três perguntas sobre o artigo escolhido:</p>
+    <ul class="steps">
+      <li>
+        <div class="step-body">
+          <strong>Qual é o problema que o artigo tenta resolver?</strong>
+          <p>Todo artigo acadêmico parte de uma questão. Identifique-a logo no início da sua leitura.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Qual é a resposta ou conclusão principal do autor?</strong>
+          <p>Não copie. Formule com suas próprias palavras o que o autor concluiu.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Você concorda? Há algo que o autor não considerou?</strong>
+          <p>Esta é a parte crítica da resenha. Traga sua perspectiva, conecte ao que estudou na disciplina e, se possível, a situações do mundo real.</p>
+        </div>
+      </li>
+    </ul>
+    <p style="margin-top:14px;">Responder a essas perguntas por escrito, mesmo que informalmente, antes de redigir a resenha, facilita muito a organização do texto final.</p>
+  </section>
+
+
+  <section>
+    <h2><span class="num">6</span> Materiais complementares para aprofundar</h2>
+    <p>Estes recursos foram selecionados para complementar o livro digital disponível no Moodle. Use-os como apoio durante a leitura do artigo e na fase de redação.</p>
+
+    <div class="materiais-grid">
+
+      <a class="material-card" href="https://blog.mettzer.com/resenha-critica/" target="_blank" rel="noopener">
+        <div class="mat-icon">📝</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Guia de leitura</div>
+          <div class="mat-titulo">Resenha crítica: o que é e como fazer em 5 passos</div>
+          <div class="mat-desc">Explica a estrutura da resenha, a diferença entre resenha descritiva e crítica, e apresenta um passo a passo direto para quem está começando.</div>
+          <div class="mat-link">Acessar no Mettzer Blog →</div>
+        </div>
+      </a>
+
+      <a class="material-card" href="https://artigocientifico.com.br/guia-com-exemplo-em-pdf/resenha-critica-de-artigo-cientifico/" target="_blank" rel="noopener">
+        <div class="mat-icon">🔬</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Passo a passo com exemplos prontos</div>
+          <div class="mat-titulo">Resenha crítica de artigo científico: exemplos e modelo</div>
+          <div class="mat-desc">Foca especificamente em como resenhar artigos acadêmicos como os da biblioteca desta disciplina, com orientações sobre como relacionar o texto ao seu repertório teórico.</div>
+          <div class="mat-link">Acessar no Artigo Científico →</div>
+        </div>
+      </a>
+
+      <a class="material-card" href="https://processus.edu.br/wp-content/uploads/112.Como-elaborar-uma-resenha-de-um-artigo-academico-ou-cientifico.pdf" target="_blank" rel="noopener">
+        <div class="mat-icon">📄</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Artigo acadêmico em PDF</div>
+          <div class="mat-titulo">Como elaborar uma resenha de artigo acadêmico</div>
+          <div class="mat-desc">Publicado na Revista JRG de Estudos Acadêmicos. Ensina a transformar um resumo em resenha usando as técnicas de terceira pessoa explícita e de endosso.</div>
+          <div class="mat-link">Baixar o PDF →</div>
+        </div>
+      </a>
+
+      <a class="material-card" href="https://www.ufsm.br/app/uploads/sites/781/2020/11/Cartilha-Resenhando.pdf" target="_blank" rel="noopener">
+        <div class="mat-icon">🎓</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Cartilha universitária em PDF</div>
+          <div class="mat-titulo">Cartilha "Resenhando" da UFSM</div>
+          <div class="mat-desc">Material didático da Universidade Federal de Santa Maria com linguagem acessível, exemplos comentados e orientações sobre o que o professor espera ao solicitar uma resenha crítica.</div>
+          <div class="mat-link">Baixar o PDF →</div>
+        </div>
+      </a>
+
+      <a class="material-card" href="https://revistajrg.com/index.php/jrg/article/view/41" target="_blank" rel="noopener">
+        <div class="mat-icon">📚</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Artigo de referência</div>
+          <div class="mat-titulo">Da síntese à resenha: técnicas de transformação textual</div>
+          <div class="mat-desc">Explica como um tópico frasal vira síntese, a síntese vira resumo e o resumo se transforma em resenha. Indicado para quem quer entender o processo de forma estruturada.</div>
+          <div class="mat-link">Acessar na Revista JRG →</div>
+        </div>
+      </a>
+
+      <div class="material-card material-dica">
+        <div class="mat-icon">💡</div>
+        <div class="mat-corpo">
+          <div class="mat-tipo">Dica prática</div>
+          <div class="mat-titulo">Resenha não é cópia nem resumo neutro</div>
+          <div class="mat-desc">Apresente as ideias do autor com suas próprias palavras e, em seguida, tome uma posição fundamentada. Evite "eu gostei" ou "achei interessante". Prefira: "o autor demonstra que..." seguido de um julgamento com argumento.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Direito Empresarial e Societário | Ciências Contábeis | UFT Palmas</p>
+  <p style="margin-top:4px;">Professor <strong>Doutor André Demetrio</strong> | demetrio@uft.edu.br</p>
+</footer>
+
+</body>
+</html>
